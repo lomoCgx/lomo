@@ -1,0 +1,14 @@
+被测试的xml文件test.xml
+<?xml version="1.0" encoding="UTF-8"?>  
+<root>  
+    <user editor="chenleixing" date="2015-02-15">  
+        <name>张三</name>  
+        <year>24</year>  
+        <sex>男</sex>  
+    </user>  
+    <user editor="zhangxiaochao" date="2015-02-15">  
+        <name>李四</name>  
+        <year>24</year>  
+        <sex>女</sex>  
+    </user>  
+</root>  
