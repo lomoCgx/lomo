@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	   xmlns:task="http://www.springframework.org/schema/task" xmlns:cache="http://www.springframework.org/schema/cache"
+	   xmlns:p="http://www.springframework.org/schema/p"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	<!--<context:annotation-config />-->
+	
+	<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"></bean>
+        
+    <!-- 处理器映射器 -->
+	<!-- 根据bean的name进行查找Handler 将action的url配置在bean的name中 -->
+	<bean
+		class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" />
+
+    <!-- controller配置 -->
+   <!--  name="/items1.action"：前边配置的处理器映射器为BeanNameUrlHandlerMapping，
+    如果请求的URL 为“上下文/items1.action”将会成功映射到ItemList1控制器。 -->
+	<!-- <bean name="/items1.action" id="itemList1" 
+        class="com.cgx.controller.ItemList1"/> -->
+        
+        
+    <!-- 指定了需要被扫描的包路径，如果有多个可以使用逗号分隔 -->    
+    <context:component-scan base-package="com.cgx.controller" />  
+    
+    <mvc:annotation-driven />     
+        
+    <!-- InternalResourceViewResolver：支持JSP视图解析
+     viewClass：JstlView表示JSP模板页面需要使用JSTL标签库，所以classpath中必须包含jstl的相关jar 包；
+     prefix 和suffix：查找视图页面的前缀和后缀，最终视图的址为：
+               前缀+逻辑视图名+后缀，逻辑视图名需要在controller中返回ModelAndView指定，
+               比如逻辑视图名为hello，则最终返回的jsp视图地址 “WEB-INF/jsp/hello.jsp” -->
+	
+	
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+      <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+      <property name="prefix" value="/"/>
+      <property name="suffix" value=".jsp"/>
+   </bean>
+</beans>
