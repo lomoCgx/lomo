@@ -1,0 +1,64 @@
+<view class="page">
+     <view class="page_hd">
+     <text>搜索栏</text>
+     </view>
+     <view class="page_bd">
+         <view class="section__nav" >
+             <view class="left border__right">
+                  酒店
+             </view>
+             <view class="right">
+                 <view class="item border__right border__bottom">
+                      酒店 
+                 </view>
+                 <view class="item border__bottom">
+                      酒店2
+                 </view>
+                 <view class="item border__right ">
+                      酒店3
+                 </view>
+                 <view class="item">
+                      酒店4
+                 </view>
+             </view>
+         </view>
+         <view class="section__nav" style="background:#CCCCCC">
+             <view class="left border__right">
+                  酒店
+             </view>
+             <view class="right">
+                 <view class="item border__right border__bottom">
+                      酒店 
+                 </view>
+                 <view class="item border__bottom">
+                      酒店2
+                 </view>
+                 <view class="item border__right ">
+                      酒店3
+                 </view>
+                 <view class="item">
+                      酒店4
+                 </view>
+             </view>
+         </view>
+         <view class="section__nav" style="background:#EEE0E5">
+             <view class="left border__right">
+                  酒店
+             </view>
+             <view class="right">
+                 <view class="item border__right border__bottom">
+                      酒店 
+                 </view>
+                 <view class="item border__bottom">
+                      酒店2
+                 </view>
+                 <view class="item border__right ">
+                      酒店3
+                 </view>
+                 <view class="item">
+                      酒店4
+                 </view>
+             </view>
+         </view>
+     </view>
+</view>
