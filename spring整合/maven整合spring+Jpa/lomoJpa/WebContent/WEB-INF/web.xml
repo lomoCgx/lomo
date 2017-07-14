@@ -60,24 +60,47 @@
          <url-pattern>/*</url-pattern>
      </filter-mapping>
    <!-- Session延迟加载到页面  --> 
-  <!--  <filter>  
+    <!-- <filter>  
     <filter-name>openSessionInViewFilter</filter-name>  
     <filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>  
     <init-param>  
       <param-name>singleSession</param-name>  
       <param-value>true</param-value>  
-    </init-param>  
+    </init-param>
+    <init-param>  
+            <param-name>entityManagerFactoryBeanName</param-name>  
+            <param-value>entityManagerFactory</param-value>  
+     </init-param> 
    </filter>  
     
    <filter-mapping>  
     <filter-name>openSessionInViewFilter</filter-name>  
     <url-pattern>*.action</url-pattern>  
-   </filter-mapping>
+   </filter-mapping> -->
    
-   配置session超时时间，单位分钟
+   <!-- Session延迟加载到页面  -->
+   <filter>  
+        <filter-name>OpenEntityManagerInViewFilter</filter-name>  
+        <filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>  
+        <init-param>  
+            <param-name>entityManagerFactoryBeanName</param-name>  
+            <param-value>entityManagerFactory</param-value>  
+        </init-param>  
+        <init-param>  
+            <param-name>persistenceUnitName</param-name>  
+            <param-value>activitioa</param-value>  
+        </init-param>  
+    </filter>  
+    <filter-mapping>  
+        <filter-name>OpenEntityManagerInViewFilter</filter-name>  
+        <url-pattern>*.action</url-pattern>  
+    </filter-mapping>
+   
+   
+   <!-- 配置session超时时间，单位分钟 -->
 	<session-config>
 		<session-timeout>30</session-timeout>
-	</session-config> -->
+	</session-config> 
   
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
