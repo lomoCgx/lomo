@@ -1,0 +1,39 @@
+maven spring整合jpa 总结
+
+1.pom.xml文件对jar包进行统一的管理
+
+2.web.xml文件初始化加载一些文件，例如：applicationContext.xml、webmvct-servlet.xml
+
+3.applicationContext.xml 进行数据源配置、事务配置、以及jap实体管理器管理配置（包括二级缓存），使用注解对包进行扫描。
+
+4.jpa  ：1.创建接口类型（xxxDao），然后继承接口类（JpaRepository<User, Serializable>,JpaSpecificationExecutor<User>，其中JpaSpecificationExecutor可查询换的page）
+         在@Autowired
+         UserDao userDao;
+         初始化时，即可进行多userDao进行操作（实际初始化的是：SimpleJpaRepository）
+         
+         2.自定义查询语句。
+           @Autowired
+           @PersistenceContext
+           private EntityManager em;
+           可以em进行操作。createSQLQuery调用查询语句。
+5.事务：需要在Service实现类上进行添加@Transactional(rollbackFor=Exception.class)。
+        如果想要Session延迟加载到页面，需要在web.xml里面添加 OpenEntityManagerInViewFilter
+        如果不添加，页面的session值维持在Service层面。
+
+6.缓存：需要在entityManagerFactory里面加入下面的配置
+       <property name="jpaProperties">  
+        <props>  
+            <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>  
+            <prop key="hibernate.format_sql">true</prop>
+            
+            <!-- 二级缓存 -->
+            <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
+	        <prop key="javax.persistence.sharedCache.mode">ENABLE_SELECTIVE</prop>
+	        <prop key="hibernate.generate_statistics">true</prop>
+	        
+	        <!-- 查询缓存 -->
+	        <prop key="hibernate.cache.use_query_cache">true</prop>  
+        </props>  
+        </property>  
+        
+              
